@@ -1,20 +1,39 @@
+# ---------------------------------------------
+# SELECT STATEMENTS IN SQL - QUICK REFERENCE
+# ---------------------------------------------
 
-# selecting all data from table
-SELECT * from employee_demographics;
-# selecting table by specifying the database
-select * from parks_and_recreation.employee_salary;
-# selecting nly desired data from table
-SELECT first_name,last_name,employee_id,salary from parks_and_recreation.employee_salary;
+# 1. Selecting all data from a table
+SELECT * FROM employee_demographics;
 
-# PEMDAS used for calculation and can do any calculation with existing coulumn like foolows
+# 2. Selecting data by specifying the database name
+SELECT * FROM parks_and_recreation.employee_salary;
 
-select 
-first_name,age , age+10,(age+10)*10 +10 
-from employee_demographics;
+# 3. Selecting only desired columns from a table
+SELECT first_name, last_name, employee_id, salary
+FROM parks_and_recreation.employee_salary;
 
-# distinct 
+# -----------------------------------------------------
+# USING EXPRESSIONS AND CALCULATIONS (PEMDAS IN SQL)
+# -----------------------------------------------------
+# SQL follows PEMDAS order: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction
+# You can perform calculations on existing columns.
 
-select distinct gender from employee_demographics;  # distinct with only 1 condition
+SELECT 
+    first_name,
+    age,
+    age + 10 AS age_plus_10,              # Adds 10 to age
+    (age + 10) * 10 + 10 AS final_value   # Complex calculation using PEMDAS
+FROM employee_demographics;
 
-select distinct first_name,gender from employee_demographics;  # 2 colums 
+# ---------------------------
+# USING DISTINCT IN SQL
+# ---------------------------
+# DISTINCT removes duplicate values from the result set.
 
+# 1. Distinct with one column
+SELECT DISTINCT gender
+FROM employee_demographics;
+
+# 2. Distinct with multiple columns
+SELECT DISTINCT first_name, gender
+FROM employee_demographics;
