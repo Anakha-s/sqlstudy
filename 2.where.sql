@@ -71,7 +71,7 @@ WHERE (first_name = 'Ann' AND age > 30) OR age > 45;
 # LIKE is used to search for patterns instead of exact matches.
 # Wildcards:
 #   %  → any number of characters (including none)
-#   _  → exactly one character
+#   _  → exactly one character or a specific value
 #
 # Examples:
 #   WHERE name LIKE 'A%'   → starts with A  (Alice, Arun)
