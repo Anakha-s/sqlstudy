@@ -1,33 +1,36 @@
-# ---------------------------------------------
-# WHERE CONDITION IN SQL - QUICK REFERENCE
-# ---------------------------------------------
+-- ==========================================================
+-- 🧩 WHERE CONDITION IN SQL – QUICK REFERENCE
+-- ==========================================================
 
-# Display all data from tables
+-- The WHERE clause filters rows based on specified conditions.
+-- It appears after the FROM clause and before GROUP BY / ORDER BY.
+
+-- ----------------------------------------------------------
+-- 📋 View all data from tables
+-- ----------------------------------------------------------
 SELECT * FROM employee_demographics;
 SELECT * FROM employee_salary;
 
-# --------------------------------------------------
-# COMPARISON OPERATORS (=, >, >=, <, <=, !=)
-# --------------------------------------------------
+-- ==========================================================
+-- ⚖️ COMPARISON OPERATORS (=, >, >=, <, <=, !=)
+-- ==========================================================
 
-# 1. Using '=' for exact match
+-- 1️⃣ '=' : Exact match
 SELECT * 
 FROM employee_salary 
 WHERE first_name = 'Tom';
 
-# 2. Using '>' (greater than)
-# Shows rows with salary higher than 50000 (excludes 50000)
+-- 2️⃣ '>' : Greater than (excludes the value itself)
 SELECT * 
 FROM employee_salary 
 WHERE salary > 50000;
 
-# 3. Using '>=' (greater than or equal to)
-# Includes 50000 and above
+-- 3️⃣ '>=' : Greater than or equal to (includes 50000)
 SELECT * 
 FROM employee_salary 
 WHERE salary >= 50000;
 
-# 4. Using '<' and '<=' (less than / less than or equal to)
+-- 4️⃣ '<' and '<=' : Less than / Less than or equal to
 SELECT * 
 FROM employee_salary 
 WHERE salary < 50000;
@@ -36,66 +39,77 @@ SELECT *
 FROM employee_salary 
 WHERE salary <= 50000;
 
-# 5. Using '!=' (not equal to)
+-- 5️⃣ '!=' : Not equal to (some SQL engines also use '<>')
 SELECT * 
 FROM employee_demographics 
 WHERE gender != 'Male';
 
-# --------------------------------------------------
-# LOGICAL OPERATORS (AND, OR, NOT)
-# --------------------------------------------------
+-- ==========================================================
+-- 🔗 LOGICAL OPERATORS (AND, OR, NOT)
+-- ==========================================================
 
-# 1. AND → Both conditions must be true
+-- 1️⃣ AND → Both conditions must be TRUE
 SELECT * 
 FROM employee_demographics 
 WHERE age > 40 AND gender = 'Female';
 
-# 2. OR → At least one condition must be true
+-- 2️⃣ OR → At least one condition must be TRUE
 SELECT * 
 FROM employee_demographics 
 WHERE age > 40 OR gender = 'Male';
 
-# 3. NOT → Negates a condition
+-- 3️⃣ NOT → Negates a condition
 SELECT * 
 FROM employee_demographics 
 WHERE age > 40 OR NOT gender = 'Male';
 
-# 4. Combining conditions using parentheses
+-- 4️⃣ Combining conditions with parentheses for clarity
 SELECT * 
 FROM employee_demographics 
 WHERE (first_name = 'Ann' AND age > 30) OR age > 45;
 
-# --------------------------------------------------
-# USING LIKE FOR PATTERN MATCHING
-# --------------------------------------------------
-# LIKE is used to search for patterns instead of exact matches.
-# Wildcards:
-#   %  → any number of characters (including none)
-#   _  → exactly one character or a specific value
-#
-# Examples:
-#   WHERE name LIKE 'A%'   → starts with A  (Alice, Arun)
-#   WHERE name LIKE '%a%'  → contains 'a'   (Sara, Diana)
-#   WHERE code LIKE 'AB_'  → starts with AB and one extra character (ABC, ABD)
+-- ==========================================================
+-- 🔍 USING LIKE FOR PATTERN MATCHING
+-- ==========================================================
+-- LIKE is used to search for patterns rather than exact text.
+-- Wildcards:
+--   %  → any number of characters (including none)
+--   _  → exactly one character
+--
+-- Examples:
+--   WHERE name LIKE 'A%'   → names starting with A (e.g., Alice, Arun)
+--   WHERE name LIKE '%a%'  → names containing 'a' (e.g., Sara, Diana)
+--   WHERE code LIKE 'AB_'  → starts with AB + one more character (e.g., ABC, ABD)
 
-# Examples using LIKE:
+-- Example 1: Names starting with 'A'
 SELECT * 
 FROM employee_demographics 
-WHERE first_name LIKE 'A%';        # Names starting with A
+WHERE first_name LIKE 'A%';
 
+-- Example 2: Names containing 'a'
 SELECT * 
 FROM employee_demographics 
-WHERE first_name LIKE '%a%';       # Names containing 'a'
+WHERE first_name LIKE '%a%';
 
+-- Example 3: Names starting with 'A' and exactly two more characters
 SELECT * 
 FROM employee_demographics 
-WHERE first_name LIKE 'A__';       # Names with A followed by two characters
+WHERE first_name LIKE 'A__';
 
+-- Example 4: Names starting with 'A' and at least two more characters
 SELECT * 
 FROM employee_demographics 
-WHERE first_name LIKE 'A__%';      # A + at least two more characters
+WHERE first_name LIKE 'A__%';
 
+-- Example 5: Pattern matching combined with another condition
 SELECT * 
 FROM employee_demographics 
 WHERE first_name LIKE 'A__%' 
-  AND age > 30;                    # Pattern match + condition
+  AND age > 30;
+
+-- ==========================================================
+-- ✅ SUMMARY:
+-- WHERE → Filters rows before any grouping or aggregation.
+-- Supports comparison, logical, and pattern-matching operators.
+-- Can be combined with parentheses for complex conditions.
+-- ==========================================================
